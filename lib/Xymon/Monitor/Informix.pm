@@ -10,7 +10,7 @@ use strict;
 BEGIN {
     use Exporter ();
     use vars qw($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS);
-    $VERSION     = '0.03';
+    $VERSION     = '0.04';
     @ISA         = qw(Exporter);
     #Give a hoot don't pollute, do not export more than needed by default
     @EXPORT      = qw();
@@ -82,7 +82,8 @@ sub check {
 		#	
 		foreach my $dbserver (@{$instance->{$hostname}}) {
 			
-			my $dbh = DBI->connect('dbi:Informix:sysmaster@'.$dbserver,"informix","kcgp.36", { AutoCommit => 0, PrintError => 1 }) || die "$DBI::errstr $@";
+			
+			my $dbh = DBI->connect('dbi:Informix:sysmaster@'.$dbserver,"informix","kcgp.36", { AutoCommit => 0, PrintError => 1 });
 			print  . "\n";
 			if( $dbh ) {
 				my @row_ary = $dbh->selectrow_array('select count(*) from systables;');
