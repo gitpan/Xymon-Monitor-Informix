@@ -10,7 +10,7 @@ use strict;
 BEGIN {
     use Exporter ();
     use vars qw($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS);
-    $VERSION     = '0.05';
+    $VERSION     = '0.06';
     @ISA         = qw(Exporter);
     #Give a hoot don't pollute, do not export more than needed by default
     @EXPORT      = qw();
@@ -84,7 +84,6 @@ sub check {
 			
 			
 			my $dbh = DBI->connect('dbi:Informix:sysmaster@'.$dbserver,"informix","kcgp.36", { AutoCommit => 0, PrintError => 1 });
-			print  . "\n";
 			if( $dbh ) {
 				my @row_ary = $dbh->selectrow_array('select count(*) from systables;');
 				$hostmsg .= "<IMG src=http://hobbit/gifs/green-recent.gif> $dbserver Connected OK\n";
@@ -102,7 +101,6 @@ sub check {
 		#	
 		my $xymon = Xymon::Client->new({home=>$self->{home}});
 	
-		print "$hostname $color $hostmsg\n";
 			
 		$xymon->send_status({
 			server=>"$hostname",
