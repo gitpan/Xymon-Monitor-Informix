@@ -9,7 +9,7 @@ use strict;
 BEGIN {
     use Exporter ();
     use vars qw($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS);
-    $VERSION     = '0.01';
+    $VERSION     = '0.02';
     @ISA         = qw(Exporter);
     #Give a hoot don't pollute, do not export more than needed by default
     @EXPORT      = qw();
@@ -33,7 +33,7 @@ sub new
 	$ENV{INFORMIXCONTIME} = $parm->{CONTIME} || 5;
 	$ENV{INFORMIXCONTRY}= $parm->{CONTRY} || 1;
 	$ENV{INFORMIXDIR}= $parm->{INFORMIXDIR} || "/informix/";
-	$ENV{LD_LIBRARY_PATH} = $parm->{LS_LIBRARY_PATH} || "/informix/lib:/informix/lib/esql";
+	$ENV{LD_LIBRARY_PATH} = $parm->{LD_LIBRARY_PATH} || "/informix/lib:/informix/lib/esql";
 	
 	$self->{home} = $parm->{HOBBITHOME} || '/home/hobbit/client/';
 	$self->{informixdir} = $parm->{INFORMIXDIR} || "/informix/";

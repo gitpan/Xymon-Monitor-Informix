@@ -12,8 +12,8 @@ WriteMakefile(
     VERSION_FROM => 'lib/Xymon/Monitor/Informix.pm', # finds \$VERSION
     AUTHOR       => 'David Peters (davidp@electronf.com)',
     ABSTRACT     => 'Hobbit / Xymon Informix Database Monitor',
-    EXE_FILES	 => ['lib/Xymon/Monitor/ifxcheck.pl'],
     INSTALLSITESCRIPT => $hobbit,
+	EXE_FILES	=> ['lib/Xymon/Monitor/ifxcheck.pl'],
     PREREQ_PM    => {
                      'Test::Simple' => 0.44,
                      'Xymon::Client' => 0.01,
