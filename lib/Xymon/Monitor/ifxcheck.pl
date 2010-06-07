@@ -6,7 +6,7 @@ my $Informix = new Xymon::Monitor::Informix->new({
 										CONTRY => 1,
 										INFORMIXDIR => '/informix/',
 										LD_LIBRARY_PATH => '/informix/lib:/informix/lib/esql',
-										HOBBITHOME => '/home/hobbit/server/',									
+										HOBBITHOME => '/home/hobbit/client/',									
 	
 									});
 									

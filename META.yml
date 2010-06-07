@@ -1,25 +1,17 @@
 --- #YAML:1.0
-name:               Xymon-Monitor-Informix
-version:            0.04
-abstract:           Hobbit / Xymon Informix Database Monitor
-author:
+name:                Xymon-Monitor-Informix
+version:             0.05
+abstract:            Hobbit / Xymon Informix Database Monitor
+license:             ~
+author:              
     - David Peters (davidp@electronf.com)
-license:            unknown
-distribution_type:  module
-configure_requires:
-    ExtUtils::MakeMaker:  0
-build_requires:
-    ExtUtils::MakeMaker:  0
-requires:
-    DBD::Informix:  0.1
-    DBI:            0.1
-    Test::Simple:   0.44
-    Xymon::Client:  0.01
-no_index:
-    directory:
-        - t
-        - inc
-generated_by:       ExtUtils::MakeMaker version 6.56
+generated_by:        ExtUtils::MakeMaker version 6.42
+distribution_type:   module
+requires:     
+    DBD::Informix:                 0.1
+    DBI:                           0.1
+    Test::Simple:                  0.44
+    Xymon::Client:                 0.01
 meta-spec:
-    url:      http://module-build.sourceforge.net/META-spec-v1.4.html
-    version:  1.4
+    url:     http://module-build.sourceforge.net/META-spec-v1.3.html
+    version: 1.3

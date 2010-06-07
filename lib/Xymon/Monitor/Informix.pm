@@ -10,7 +10,7 @@ use strict;
 BEGIN {
     use Exporter ();
     use vars qw($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS);
-    $VERSION     = '0.04';
+    $VERSION     = '0.05';
     @ISA         = qw(Exporter);
     #Give a hoot don't pollute, do not export more than needed by default
     @EXPORT      = qw();
@@ -36,9 +36,9 @@ sub new
 	$ENV{INFORMIXDIR}= $parm->{INFORMIXDIR} || "/informix/";
 	$ENV{LD_LIBRARY_PATH} = $parm->{LD_LIBRARY_PATH} || "/informix/lib:/informix/lib/esql";
 	
-	$self->{home} = $parm->{HOBBITHOME} || '/home/hobbit/client/';
+	$self->{home} = $parm->{HOBBITHOME} || '/home/hobbit/server/';
 	$self->{informixdir} = $parm->{INFORMIXDIR} || "/informix/";
-	$self->{xymon} = Xymon::Client->new({home=>$self->{home}});
+	
 
     return $self;
     
@@ -100,7 +100,11 @@ sub check {
 		#
 		# Send to xymon server
 		#	
-		$self->{xymon}->send_status({
+		my $xymon = Xymon::Client->new({home=>$self->{home}});
+	
+		print "$hostname $color $hostmsg\n";
+			
+		$xymon->send_status({
 			server=>"$hostname",
 			testname=>"database",
 			color=>$color,
