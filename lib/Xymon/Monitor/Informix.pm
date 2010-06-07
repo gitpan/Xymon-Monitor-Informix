@@ -1,15 +1,16 @@
 package Xymon::Monitor::Informix;
 
-#use DBI;
-#use DBD::Informix;
-#use Xymon::Client;
+
+use DBI;
+use DBD::Informix;
+use Xymon::Client;
 
 use strict;
 
 BEGIN {
     use Exporter ();
     use vars qw($VERSION @ISA @EXPORT @EXPORT_OK %EXPORT_TAGS);
-    $VERSION     = '0.02';
+    $VERSION     = '0.03';
     @ISA         = qw(Exporter);
     #Give a hoot don't pollute, do not export more than needed by default
     @EXPORT      = qw();
@@ -58,16 +59,17 @@ sub check {
 	#
 	#
 	my $fh;
-	open( $fh, "<", $self->informixdir . "/etc/sqlhosts");
+	open( $fh, "<", $self->{informixdir} . "/etc/sqlhosts");
 	while(<$fh>) {
 		my ($server, $proto,$hostname) = split(/\s+/,$_);
 		push @{$instance->{$hostname}}, $server;
 	}
 	
-	
+	close($fh);
 	#
 	# Cycle through hosts
 	#
+	
 	foreach my $hostname (keys %$instance ) {
 		
 	
@@ -80,17 +82,17 @@ sub check {
 		#	
 		foreach my $dbserver (@{$instance->{$hostname}}) {
 			
-			
-			my $dbh = DBI->connect('dbi:Informix:sysmaster@'.$dbserver,"informix","kcgp.36", { AutoCommit => 0, PrintError => 0 });
+			my $dbh = DBI->connect('dbi:Informix:sysmaster@'.$dbserver,"informix","kcgp.36", { AutoCommit => 0, PrintError => 1 }) || die "$DBI::errstr $@";
+			print  . "\n";
 			if( $dbh ) {
 				my @row_ary = $dbh->selectrow_array('select count(*) from systables;');
 				$hostmsg .= "<IMG src=http://hobbit/gifs/green-recent.gif> $dbserver Connected OK\n";
-				
 			} else {
 				$hostmsg .= "<IMG src=http://hobbit/gifs/red-recent.gif> $dbserver Failed Connection\n";
 				$hostsuccess = -1;
 				$color = "red";
-			}	
+			}
+				
 					
 		}
 	

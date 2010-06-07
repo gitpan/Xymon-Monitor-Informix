@@ -10,4 +10,5 @@ my $Informix = new Xymon::Monitor::Informix->new({
 	
 									});
 									
+
 $Informix->check();

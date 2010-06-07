@@ -1,6 +1,6 @@
 --- #YAML:1.0
 name:                Xymon-Monitor-Informix
-version:             0.02
+version:             0.03
 abstract:            Hobbit / Xymon Informix Database Monitor
 license:             ~
 author:              
